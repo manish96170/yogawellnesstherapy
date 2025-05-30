@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga wellness & Theraphy</title>
+    <!-- Add EmailJS SDK -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation Styles */
+        .sticky-menu {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #666;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .quote {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 0 1rem;
+            max-width: 800px;
+        }
+
+        .slider-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 2rem;
+        }
+
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            padding: 1.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s ease;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Contact Form Styles */
+        .contact-section {
+            padding: 4rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #333;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #444;
+        }
+
+        .success-message {
+            display: none;
+            color: green;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .error-message {
+            display: none;
+            color: red;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Tailwind CSS classes are used directly in the HTML above */
+
+        /* Custom styles for therapy cards */
+        .therapy-card {
+            @apply bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300;
+        }
+
+        .therapy-card img {
+            @apply rounded-lg;
+        }
+
+        .therapy-card h3 {
+            @apply text-xl font-semibold text-gray-800 mb-2;
+        }
+
+        .therapy-card p {
+            @apply text-gray-600 mb-4;
+        }
+
+        .therapy-card a {
+            @apply text-blue-500 hover:underline;
+        }
+
+        /* Responsive grid layout */
+        @media (min-width: 640px) {
+            .grid-cols-1 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-cols-1 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .slider-container {
+                height: 50vh; /* Half viewport height on mobile */
+            }
+
+            .slider-btn {
+                padding: 1rem;
+                font-size: 1.2rem;
+            }
+
+            .quote {
+                font-size: 1.2rem;
+                bottom: 15%;
+            }
+
+            .contact-section {
+                padding: 2rem 1rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Prevents zoom on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sticky-menu">
+        <div class="menu-container">
+            <a href="#" class="logo">
+                <span class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
+                    <i class="fas fa-om text-purple-600 mr-2"></i>
+                    Yoga Wellness & Therapy
+                </span>
+            </a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="#home"><i class="fas fa-home text-purple-600 mr-2"></i>Home</a></li>
+                <li><a href="#classes"><i class="fas fa-dumbbell text-purple-600 mr-2"></i>Classes</a></li>
+                <li><a href="#contact"><i class="fas fa-calendar-alt text-purple-600 mr-2"></i>Schedule</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle text-purple-600 mr-2"></i>About</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope text-purple-600 mr-2"></i>Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1920&q=80" alt="Yoga Pose 1">
+                <div class="quote">"Yoga is not about touching your toes, it's about what you learn on the way down."</div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=1920&q=80" alt="Yoga Pose 2">
+                <div class="quote">"The body benefits from movement, and the mind benefits from stillness."</div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=1920&q=80" alt="Yoga Pose 3">
+                <div class="quote">"Yoga is the journey of the self, through the self, to the self."</div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1920&q=80" alt="Yoga Pose 4">
+                <div class="quote">"Inhale the future, exhale the past."</div>
+            </div>
+        </div>
+        <div class="slider-buttons">
+            <button class="slider-btn prev">❮</button>
+            <button class="slider-btn next">❯</button>
+        </div>
+    </div>
+
+    <section id="" class="py-16 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-8">Our Therapeutic Services</h2>
+            <p class="text-lg text-gray-600 mb-12">Explore our specialized therapies designed to enhance your well-being.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Cup Therapy -->
+                <div class="therapy-card">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Cupping Therapy" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Cupping Therapy</h3>
+                    <p class="text-gray-600 mb-4">A traditional healing practice that uses suction cups to improve blood flow and relieve pain.</p>
+                    <a href="https://www.clevelandclinic.org/health/treatments/16554-cupping" target="_blank" class="text-blue-500 hover:underline">Learn More</a>
+                </div>
+                <!-- Shatkarma -->
+                <div class="therapy-card">
+                    <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=800&q=80" alt="Shatkarma" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Shatkarma</h3>
+                    <p class="text-gray-600 mb-4">Six purification techniques in yoga to cleanse the body and mind.</p>
+                    <a href="https://www.yogapedia.com/definition/1189/shatkarma" target="_blank" class="text-blue-500 hover:underline">Learn More</a>
+                </div>
+                <!-- Acupressure -->
+                <div class="therapy-card">
+                    <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=800&q=80" alt="Acupressure Therapy" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Acupressure Therapy</h3>
+                    <p class="text-gray-600 mb-4">A technique that applies pressure to specific points on the body to promote health and well-being.</p>
+                    <a href="https://en.wikipedia.org/wiki/Acupressure" target="_blank" class="text-blue-500 hover:underline">Learn More</a>
+                </div>
+                <!-- Physiotherapy -->
+                <div class="therapy-card">
+                    <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=800&q=80" alt="Physiotherapy" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Physiotherapy</h3>
+                    <p class="text-gray-600 mb-4">Treatment to restore movement and function when someone is affected by injury, illness, or disability.</p>
+                    <a href="https://www.physiopedia.com/Physiotherapy" target="_blank" class="text-blue-500 hover:underline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">About Yogi Amit Kaushik</h2>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="md:w-1/2">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Amit Kumar" class="rounded-lg shadow-md">
+                        </div>
+                        <div class="md:w-1/2">
+                            <p class="text-gray-600 mb-4">Master of Yogic Science (M.Sc.) with 9 years of experience in the yoga field.</p>
+                            <p class="text-gray-600 mb-4">Specializing in:</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>Hatha yoga</li>
+                                <li>Prenatal yoga</li>
+                                <li>All types of yoga</li>
+                                <li>All age group classes</li>
+                            </ul>
+                            <p class="text-gray-600">Offering group classes, personal classes, online classes, and offline classes for both beginners and advanced practitioners.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Class Location Section -->
+    <section id="classes" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Class Locations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Online Classes</h3>
+                    <p class="text-gray-600">Available through video conferencing platforms</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">In-Person Classes</h3>
+                    <p class="text-gray-600">Available at your home or public place within 20 km of Gurugram</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Pricing Section -->
+    <section id="pricing" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Class Rates</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Individual Classes</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Hourly rate: ₹1,000</li>
+                        <li>5 hours pack: ₹5,000</li>
+                        <li>10 hours pack: ₹10,000</li>
+                        <li>Travel fee: +₹500</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Package Deals</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>12 days: ₹9,000</li>
+                        <li>20 days: ₹14,000</li>
+                        <li>Group class: ₹5,000 per person (20 days)</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">Special Classes</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Online classes: ₹1,500</li>
+                        <li>Company yoga class: ₹4,000/hr</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Testimonial Section -->
+    <section id="testimonials" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Student Testimonials</h2>
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white text-xl font-bold">O</div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold">Omkar</h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"He teaches with sincerity and always provides accurate and clear information. Amit has a deep understanding of his subject. Caring Attitude. He genuinely cares about his students' progress and He is disciplined with time."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <form class="contact-form" id="contact-form" onsubmit="sendEmail(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+    <footer id="" class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- About Section -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-white mb-4">About Us</h3>
+                    <p class="text-gray-400 leading-relaxed">Dedicated to promoting wellness and mindfulness through yoga practice.</p>
+                    <p class="text-gray-400 leading-relaxed">Healing with Yoga and Ancient practice.</p>
+                    <p class="text-gray-400 leading-relaxed">Certified Wellness Therapeutic. Master in Theraphy through yoga and traditional ways</p>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#classes" class="hover:text-white transition-colors duration-300">Classes</a></li>
+                        <li><a href="#schedule" class="hover:text-white transition-colors duration-300">Schedule</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Links Section -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-white mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Facebook">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Instagram">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300" aria-label="Twitter">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <div class="mt-4">
+                        <h4 class="text-lg font-medium text-white mb-2">Address</h4>
+                        <p class="text-gray-400">
+                            Shri Shyam PG<br>
+                            Shubash Chowk<br>
+                            Gurgaon
+                        </p>
+                    <div class="mt-4">
+                        <h4 class="text-lg font-medium text-white mb-2">Contact Numbers</h4>
+                        <p class="text-gray-400">
+                            Yogi Amit Kaushik: <a href="tel:9812768647" class="hover:text-white transition-colors duration-300">9812768647</a><br>
+                            Subash: <a href="tel:7404066342" class="hover:text-white transition-colors duration-300">7404066342</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Footer Bottom -->
+        <div class="border-t border-gray-800 pt-8 text-center">
+            <p class="text-gray-400">&copy; 2025 All Rights Reserved | Designed with <span class="text-red-500">❤️</span></p>
+        </div>
+        </div>
+    </footer>
+    <script>
+        // Slider functionality
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        let currentSlide = 0;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        });
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }, 5000);
+
+        // Mobile menu functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.sticky-menu')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+    
+                function sendEmail(e) {
+                    e.preventDefault();
+                    
+                    // Initialize EmailJS
+                    emailjs.init("1pbkdV9BSn1sLx2V9"); // Replace with your actual public key
+                    
+                    // Get form data
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const message = document.getElementById('message').value;
+
+                    // Prepare template parameters
+                    const templateParams = {
+                        from_name: name,
+                        from_email: email,
+                        phone: phone,
+                        message: message
+                    };
+
+                    // Send email using EmailJS
+                    emailjs.send('service_otqdf3n', 'template_ttnrilb', templateParams)
+                        .then(function(response) {
+                            console.log('SUCCESS!', response.status, response.text);
+                            alert('Message sent successfully!');
+                            document.getElementById('contact-form').reset();
+                        }, function(error) {
+                            console.log('FAILED...', error);
+                            alert('Failed to send message. Please try again.');
+                        });
+                }
+            
+    </script>
+</body>
+</html>
+       
