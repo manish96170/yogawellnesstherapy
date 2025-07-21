@@ -12,6 +12,17 @@
   gtag('js', new Date());
   gtag('config', 'AW-17329060126');
 </script>
+<!-- Event snippet for Contact (2) conversion page In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. --> 
+    <script> function gtag_report_conversion(url) { 
+    var callback = function () { 
+    if (typeof(url) != 'undefined') { 
+    window.location = url; } 
+    }; 
+    gtag('event', 'conversion', { 
+        'send_to': 'AW-17329060126/by_jCOSKvPQaEJ7ykcdA', 'event_callback': callback }); 
+    return false; 
+    } 
+    </script>
     <!-- Add EmailJS SDK -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -537,7 +548,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="submit-btn">Book A Consultation Call</button>
+                <button type="submit" onclick="return gtag_report_conversion('email:bookaconsulationcall');" class="submit-btn">Book A Consultation Call</button>
             </form>
         </div>
     </section>
@@ -687,7 +698,7 @@
                     <label for="message">Message*</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Send Message*</button>
+                <button onclick="return gtag_report_conversion('email:sendmessafe');" type="submit" class="submit-btn">Send Message*</button>
             </form>
         </div>
     </section>
@@ -739,8 +750,8 @@
                     <div class="mt-4">
                         <h4 class="text-lg font-medium text-white mb-2">Contact Numbers</h4>
                         <p class="text-gray-400">
-                            Yogi Amit Kaushik: <a href="tel:9812768647" class="hover:text-white transition-colors duration-300">9812768647</a><br>
-                            Sourabh: <a href="tel:7404066342" class="hover:text-white transition-colors duration-300">7404066342</a>
+                            Yogi Amit Kaushik: <a onclick="return gtag_report_conversion('tel:9812768647');" href="tel:9812768647" class="hover:text-white transition-colors duration-300">9812768647</a><br>
+                            Sourabh: <a onclick="return gtag_report_conversion('tel:7404066342');" href="tel:7404066342" class="hover:text-white transition-colors duration-300">7404066342</a>
                         </p>
                     </div>
                 </div>
