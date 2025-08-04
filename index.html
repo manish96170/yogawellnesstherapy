@@ -548,7 +548,7 @@
                     </select>
                 </div>
 
-                <button type="submit" onclick="return gtag_report_conversion('email:bookaconsulationcall');" class="submit-btn">Book A Consultation Call</button>
+                <button type="submit" class="submit-btn">Book A Consultation Call</button>
             </form>
         </div>
     </section>
@@ -698,7 +698,7 @@
                     <label for="message">Message*</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                <button onclick="return gtag_report_conversion('email:sendmessafe');" type="submit" class="submit-btn">Send Message*</button>
+                <button type="submit" class="submit-btn">Send Message*</button>
             </form>
         </div>
     </section>
@@ -850,6 +850,7 @@
                             console.log('SUCCESS!', response.status, response.text);
                             alert('Message sent successfully!');
                             document.getElementById('contact-form').reset();
+                            return gtag_report_conversion('email:bookaconsulationcall');
                         }, function(error) {
                             console.log('FAILED...', error);
                             alert('Failed to send message. Please try again.');
@@ -882,6 +883,7 @@
                         console.log('SUCCESS!', response.status, response.text);
                         alert('Message sent successfully!');
                         document.getElementById('contact-form').reset();
+                        return gtag_report_conversion('email:sendmessage');
                     }, function(error) {
                         console.log('FAILED...', error);
                         alert('Failed to send message. Please try again.');
