@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindfulness & Meditation | Yoga Wellness & Therapy</title>
+    <!-- Google Fonts for Premium Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17329060126"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17329060126');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #8B7BA8;
+            --secondary-color: #D4A574;
+            --accent-green: #A8B5A0;
+            --bg-light: #F9F7F3;
+            --text-dark: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Navigation Styles */
+        .sticky-menu {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 123, 168, 0.4) 0%, rgba(212, 165, 116, 0.3) 100%);
+            z-index: 1;
+        }
+
+        .hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        /* Section Styling */
+        section {
+            scroll-behavior: smooth;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        section h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .section-padding {
+            padding: 5rem 2rem;
+        }
+
+        .section-light {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #FFFFFF 100%);
+        }
+
+        .section-accent {
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--bg-light) 100%);
+        }
+
+        /* Cards Styling */
+        .benefit-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 45px rgba(139, 123, 168, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .benefit-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Technique Cards */
+        .technique-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--secondary-color);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .technique-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 12px 40px rgba(212, 165, 116, 0.15);
+        }
+
+        .technique-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .technique-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(139, 123, 168, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: var(--text-light);
+            padding: 3rem 2rem 1rem;
+        }
+
+        footer a {
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        footer h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero {
+                height: 60vh;
+                margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-padding {
+                padding: 3rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .benefit-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="sticky-menu">
+        <div class="menu-container">
+            <a href="/" class="logo">
+                <span class="text-base font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent md:text-2xl">
+                    <i class="fas fa-om text-purple-600 mr-2"></i>
+                    Yoga Wellness & Therapy
+                </span>
+            </a>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="/"><i class="fas fa-home text-purple-600 mr-2"></i>Home</a></li>
+                <li><a href="/#classes"><i class="fas fa-dumbbell text-purple-600 mr-2"></i>Classes</a></li>
+                <li><a href="/mindfulness.html"><i class="fas fa-leaf text-purple-600 mr-2"></i>Mindfulness</a></li>
+                <li><a href="/#book"><i class="fas fa-book text-purple-600 mr-2"></i>Consult Now</a></li>
+                <li><a href="/#contact"><i class="fas fa-calendar-alt text-purple-600 mr-2"></i>Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920&q=80" alt="Mindfulness & Meditation">
+        <div class="hero-content">
+            <h1>Mindfulness & Meditation</h1>
+            <p>Transform Your Mind, Calm Your Spirit, Embrace Inner Peace</p>
+            <a href="#booking" class="cta-btn"><i class="fas fa-calendar mr-2"></i>Book a Session</a>
+        </div>
+    </section>
+
+    <!-- What is Mindfulness -->
+    <section class="section-light section-padding">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-center mb-8">What is Mindfulness?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <p class="text-lg text-gray-700 mb-4">Mindfulness is the practice of bringing full awareness to the present moment without judgment. It involves observing your thoughts, feelings, and sensations with curiosity and compassion.</p>
+                    <p class="text-lg text-gray-700">By cultivating mindfulness through meditation and conscious breathing, you can reduce stress, improve emotional resilience, and achieve a deeper sense of peace and clarity in your daily life.</p>
+                </div>
+                <div class="flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=500&q=80" alt="Mindfulness Practice" class="rounded-xl shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section-accent section-padding">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-center mb-12">Benefits of Mindfulness</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Mental Clarity</h3>
+                    <p>Develop sharper focus and improved concentration. Mindfulness helps declutter your mind and enhances cognitive function for better decision-making.</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Emotional Balance</h3>
+                    <p>Regulate emotions and manage stress effectively. Cultivate inner peace and resilience through compassionate awareness of your emotional landscape.</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Stress Relief</h3>
+                    <p>Reduce anxiety and cortisol levels. Experience profound relaxation as you learn to respond to life's challenges with calm and wisdom.</p>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="benefit-card">
+                    <i class="fas fa-moon"></i>
+                    <h3>Better Sleep</h3>
+                    <p>Improve sleep quality and overcome insomnia. Meditation prepares your mind and body for restful, restorative sleep.</p>
+                </div>
+
+                <!-- Benefit 5 -->
+                <div class="benefit-card">
+                    <i class="fas fa-hands-praying"></i>
+                    <h3>Self-Awareness</h3>
+                    <p>Deepen your understanding of yourself. Mindfulness reveals your patterns, habits, and behaviors for authentic personal growth.</p>
+                </div>
+
+                <!-- Benefit 6 -->
+                <div class="benefit-card">
+                    <i class="fas fa-smile"></i>
+                    <h3>Increased Well-Being</h3>
+                    <p>Cultivate happiness and life satisfaction. Experience greater joy and contentment in your daily experiences and relationships.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meditation Techniques -->
+    <section class="section-light section-padding">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-center mb-12">Meditation Techniques</h2>
+            <div class="space-y-6">
+                <!-- Technique 1 -->
+                <div class="technique-card">
+                    <h3><i class="fas fa-wind mr-2"></i>Breath Awareness Meditation</h3>
+                    <p>Focus on the natural flow of your breath. This foundational technique anchors your attention to the present moment, quieting mental chatter and promoting deep relaxation.</p>
+                </div>
+
+                <!-- Technique 2 -->
+                <div class="technique-card">
+                    <h3><i class="fas fa-spa mr-2"></i>Body Scan Meditation</h3>
+                    <p>Systematically bring awareness through each part of your body. This technique releases physical tension and cultivates a profound sense of embodiment and peace.</p>
+                </div>
+
+                <!-- Technique 3 -->
+                <div class="technique-card">
+                    <h3><i class="fas fa-lightbulb mr-2"></i>Loving-Kindness Meditation</h3>
+                    <p>Cultivate compassion for yourself and others. This powerful practice opens your heart, reduces negative emotions, and enhances your capacity for love and empathy.</p>
+                </div>
+
+                <!-- Technique 4 -->
+                <div class="technique-card">
+                    <h3><i class="fas fa-om mr-2"></i>Mantra Meditation</h3>
+                    <p>Repeat a sacred sound or affirmation to calm your mind. Mantras harness the vibration of sound to elevate consciousness and establish inner harmony.</p>
+                </div>
+
+                <!-- Technique 5 -->
+                <div class="technique-card">
+                    <h3><i class="fas fa-eye mr-2"></i>Guided Visualization</h3>
+                    <p>Journey through calming mental imagery. Visualization engages your imagination to create peaceful inner landscapes and manifest positive states of being.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Our Classes -->
+    <section class="section-accent section-padding">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-center mb-12">Why Choose Our Mindfulness Sessions?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle text-3xl text-purple-600 mr-4 mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Expert Guidance</h3>
+                        <p class="text-gray-700">Learn from certified mindfulness instructors with years of experience in meditation and wellness practices.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle text-3xl text-purple-600 mr-4 mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Personalized Approach</h3>
+                        <p class="text-gray-700">Every practitioner is unique. We tailor our sessions to your needs, level, and wellness goals.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle text-3xl text-purple-600 mr-4 mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Flexible Sessions</h3>
+                        <p class="text-gray-700">Online or in-person classes available. Practice at your convenience in a calm, supportive environment.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle text-3xl text-purple-600 mr-4 mt-1 flex-shrink-0"></i>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Proven Results</h3>
+                        <p class="text-gray-700">Hundreds of students have experienced lasting improvements in stress, sleep, and overall well-being.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-light section-padding">
+        <div class="container mx-auto max-w-2xl text-center">
+            <h2 class="mb-6">Start Your Mindfulness Journey Today</h2>
+            <p class="text-lg text-gray-700 mb-8">Experience the transformative power of mindfulness and meditation. Join our sessions and discover inner peace, clarity, and wellness.</p>
+            <a href="#booking" class="cta-btn mb-4"><i class="fas fa-book mr-2"></i>Book a Consultation</a>
+            <p class="text-gray-600 mt-4">First-time practitioners welcome. No experience necessary.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- About Section -->
+                <div class="space-y-4">
+                    <h3>About Us</h3>
+                    <p class="text-gray-400 leading-relaxed">Dedicated to promoting wellness and mindfulness through yoga practice. Healing with ancient wisdom and modern techniques.</p>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="space-y-4">
+                    <h3>Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#classes">Classes</a></li>
+                        <li><a href="/mindfulness.html">Mindfulness</a></li>
+                        <li><a href="/#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Links Section -->
+                <div class="space-y-4">
+                    <h3>Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/share/16bMk3P94v/" aria-label="Facebook">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/amitkau123" aria-label="Instagram">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="https://youtube.com/@akyogiraj68647" aria-label="YouTube">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="space-y-4">
+                    <h3>Contact</h3>
+                    <p class="text-gray-400">
+                        <strong>Phone:</strong><br>
+                        <a href="tel:9812768647">9812768647</a>
+                    </p>
+                    <p class="text-gray-400">
+                        <strong>Email:</strong><br>
+                        Gurgaon
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 pt-4 md:pt-8 text-center">
+                <p class="text-gray-400 text-sm md:text-base">&copy; 2025 All Rights Reserved | Designed with <span class="text-red-500">❤️</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <div class="fixed bottom-8 left-4 z-50">
+        <a href="https://wa.me/919812768647" target="_blank" class="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Call Button -->
+    <div class="fixed bottom-8 right-4 z-50">
+        <a href="tel:9812768647" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center">
+            <i class="fas fa-phone text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.sticky-menu')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
